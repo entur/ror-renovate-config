@@ -1,3 +1,28 @@
 {
-  "extends": ["github>entur/abt-renovate-config"]
+  "extends": ["github>entur/abt-renovate-config"],
+  "baseBranch": "master",
+  "packageRules": [
+    {
+      "groupName": "Entur packages",
+      "matchPackagePatterns": ["^@entur/"],
+      "managers": [
+        "npm"
+      ]
+    },
+    {
+      "packagePatterns": ["^"],
+      "managers": [
+        "maven",
+        "gradle",
+        "gradle-wrapper"
+      ],
+      "registryUrls": [
+        "https://entur2.jfrog.io/entur2/libs-release"
+      ]
+    },
+    {
+      "matchPackageNames": ["org.sonatype.plugins:nexus-staging-maven-plugin"],
+      "enabled": false
+    }
+  ]
 }
