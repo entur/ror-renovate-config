@@ -4,6 +4,7 @@
     "group:apache-camelMonorepo"
   ],
   "baseBranch": "master",
+  "enabledManagers": ["maven", "npm", "circleci", "dockerfile", "gradle", "gradle-wrapper", "pip"],
   "packageRules": [
     {
       "groupName": "Entur packages",
