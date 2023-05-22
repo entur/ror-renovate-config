@@ -46,6 +46,14 @@
         "minor"
       ],
       "automerge": false
+    },
+    {
+      "description": "Avoid attempts to upgrade to non-release tags such as v230521",
+      "matchPackageNames": [
+        "com.graphql-java:graphql-java",
+        "com.graphql-java:graphql-java-extended-scalars"
+      ],
+      "versioning": "semver-coerced"
     }
   ]
 }
