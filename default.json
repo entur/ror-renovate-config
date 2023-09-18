@@ -1,8 +1,11 @@
 {
   "extends": [
     "github>entur/abt-renovate-config:renovate",
-    "group:apache-camelMonorepo"
+    "group:apache-camelMonorepo",
+    "group:allNonMajor",
+    "schedule:weekly"
   ],
+  "timezone": "Europe/Oslo",
   "baseBranch": "master",
   "enabledManagers": ["maven", "npm", "circleci", "dockerfile", "gradle", "gradle-wrapper", "pip"],
   "packageRules": [
