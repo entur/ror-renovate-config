@@ -5,6 +5,7 @@
   ],
   "baseBranch": "master",
   "enabledManagers": ["maven", "npm", "circleci", "dockerfile", "gradle", "gradle-wrapper", "pip", "github-actions"],
+  "rangeStrategy": "pin",
   "packageRules": [
     {
       "groupName": "Entur packages",
