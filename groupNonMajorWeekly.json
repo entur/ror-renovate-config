@@ -1,0 +1,7 @@
+{
+  "extends": [
+    "group:allNonMajor",
+    "schedule:weekly"
+  ],
+  "timezone": "Europe/Oslo"
+}
