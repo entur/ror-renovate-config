@@ -1,6 +1,6 @@
 {
   "extends": [
-    "github>entur/abt-renovate-config:renovate",
+    "github>entur/abt-renovate-config",
     "group:apache-camelMonorepo"
   ],
   "baseBranch": "master",
