@@ -29,7 +29,8 @@
     {
       "description": "Do not automerge Camel minor releases (not SemVer compliant: breaking changes may occur)",
       "matchPackageNames": [
-        "org.apache.camel.springboot:camel-spring-boot-bom"
+        "org.apache.camel.springboot:camel-spring-boot-bom",
+        "org.apache.camel:*"
       ],
       "matchUpdateTypes": [
         "major",
