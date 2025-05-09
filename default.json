@@ -1,21 +1,88 @@
 {
   "extends": [
-    "github>entur/abt-renovate-config",
-    "group:apache-camelMonorepo"
+    "config:recommended",
+    "group:apache-camelMonorepo",
+    "group:allApollographql",
+    "group:fortawesome",
+    "group:fusionjs",
+    "group:glimmer",
+    "group:goOpenapi",
+    "group:hibernateCore",
+    "group:hibernateValidator",
+    "group:hibernateOgm",
+    "group:hibernateCommons",
+    "group:illuminate",
+    "group:jekyllEcosystem",
+    "group:polymer",
+    "group:resilience4j",
+    "group:rubyOmniauth",
+    "group:socketio",
+    "group:springAmqp",
+    "group:springAndroid",
+    "group:springBatch",
+    "group:springBoot",
+    "group:springCloud",
+    "group:springCore",
+    "group:springData",
+    "group:springHateoas",
+    "group:springIntegration",
+    "group:springKafka",
+    "group:springLdap",
+    "group:springMobile",
+    "group:springOsgi",
+    "group:springRestDocs",
+    "group:springRoo",
+    "group:springScala",
+    "group:springSecurity",
+    "group:springSession",
+    "group:springShell",
+    "group:springSocial",
+    "group:springStatemachine",
+    "group:springWebflow",
+    "group:springWs",
+    "group:symfony",
+    "regexManagers:dockerfileVersions"
   ],
   "baseBranch": "master",
   "enabledManagers": ["maven", "npm", "circleci", "dockerfile", "gradle", "gradle-wrapper", "pip", "github-actions", "helm-values"],
   "rangeStrategy": "pin",
+  "commitMessageExtra" : "from v{{currentVersion}} to {{#if isMajor}}v{{{newMajor}}}{{else}}{{#if isSingleVersion}}v{{{toVersion}}}{{else}}{{{newValue}}}{{/if}}{{/if}}",
+  "major": {
+    "automerge": false
+  },
+  "minor": {
+    "automerge": true
+  },
+  "patch": {
+    "automerge": true
+  },
+  "pin": {
+    "automerge": true
+  },
+  "digest": {
+    "automerge": true
+  },
+  "prConcurrentLimit": 20,
+  "prHourlyLimit": 10,
   "packageRules": [
+    {
+      "matchDatasources": [
+        "maven"
+      ],
+      "registryUrls": [
+        "https://repo1.maven.org/maven2",
+        "https://plugins.gradle.org/m2/",
+        "https://maven.google.com/",
+        "https://jitpack.io",
+        "https://scandit.bintray.com/DataCapture",
+        "https://repo.osgeo.org/",
+        "https://packages.confluent.io/maven"
+      ]
+    },
     {
       "groupName": "Entur packages",
       "matchPackagePatterns": ["^@entur/"],
       "managers": ["npm"]
-    },
-    {
-      "packagePatterns": ["^"],
-      "managers": ["maven", "gradle", "gradle-wrapper"],
-      "registryUrls": ["https://entur2.jfrog.io/entur2/libs-release"]
     },
     {
       "matchPackageNames": ["org.sonatype.plugins:nexus-staging-maven-plugin"],
@@ -55,6 +122,16 @@
         "com.graphql-java:graphql-java-extended-scalars"
       ],
       "versioning": "semver-coerced"
+    },
+    {
+      "matchPackageNames": ["org.sonatype.plugins:nexus-staging-maven-plugin"],
+      "enabled": false
+    },
+    {
+      "groupName": "vite packages",
+      "matchPackagePatterns": [
+        "^vite", "^@vitejs/"
+      ]
     }
   ]
 }
