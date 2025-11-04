@@ -132,6 +132,11 @@
       "matchPackagePatterns": [
         "^vite", "^@vitejs/"
       ]
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["bellsoft/liberica-openjre-alpine"],
+      "versioning": "loose"
     }
   ]
 }
