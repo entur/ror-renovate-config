@@ -138,6 +138,12 @@
       "matchDatasources": ["docker"],
       "matchPackageNames": ["bellsoft/liberica-openjre-alpine"],
       "versioning": "loose"
+    },
+    {
+      "description": "Require 4-day release age and disable automerge for npm packages",
+      "matchManagers": ["npm"],
+      "minimumReleaseAge": "4 days",
+      "automerge": false
     }
   ]
 }
