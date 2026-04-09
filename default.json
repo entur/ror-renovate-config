@@ -48,21 +48,6 @@
   "enabledManagers": ["maven", "npm", "circleci", "dockerfile", "gradle", "gradle-wrapper", "pip", "github-actions", "helm-values"],
   "rangeStrategy": "pin",
   "commitMessageExtra" : "from v{{currentVersion}} to {{#if isMajor}}v{{{newMajor}}}{{else}}{{#if isSingleVersion}}v{{{toVersion}}}{{else}}{{{newValue}}}{{/if}}{{/if}}",
-  "major": {
-    "automerge": false
-  },
-  "minor": {
-    "automerge": true
-  },
-  "patch": {
-    "automerge": true
-  },
-  "pin": {
-    "automerge": true
-  },
-  "digest": {
-    "automerge": true
-  },
   "prConcurrentLimit": 20,
   "prHourlyLimit": 10,
   "packageRules": [
@@ -88,11 +73,6 @@
     {
       "matchPackageNames": ["org.sonatype.plugins:nexus-staging-maven-plugin"],
       "enabled": false
-    },
-    {
-      "matchPackageNames": ["google/cloud-sdk"],
-      "automerge": true,
-      "separateMinorPatch": false
     },
     {
       "description": "Do not automerge Camel minor releases (not SemVer compliant: breaking changes may occur)",
@@ -140,10 +120,25 @@
       "versioning": "loose"
     },
     {
-      "description": "Require 4-day release age and disable automerge for npm packages",
-      "matchManagers": ["npm"],
+      "description": "Require 4-day release age and disable automerge for all packages",
       "minimumReleaseAge": "4 days",
       "automerge": false
+    },
+    {
+      "description": "Exempt Entur-published packages from release age requirement",
+      "matchPackagePatterns": ["^@entur/", "^org\\.entur", "^org\\.rutebanken"],
+      "minimumReleaseAge": "0 days"
+    },
+    {
+      "description": "Allow automerge for non-major Entur package updates",
+      "matchPackagePatterns": ["^@entur/", "^org\\.entur", "^org\\.rutebanken"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
+    {
+      "description": "google/cloud-sdk does not follow semver, automerge all updates (cooldown still applies)",
+      "matchPackageNames": ["google/cloud-sdk"],
+      "automerge": true
     }
   ]
 }
