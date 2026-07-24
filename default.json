@@ -41,10 +41,12 @@
     "group:springWebflow",
     "group:springWs",
     "group:symfony",
-    "regexManagers:dockerfileVersions"
+    "regexManagers:dockerfileVersions",
+    "group:allNonMajor",
+    "schedule:weekly"
   ],
-  "platformAutomerge": false,
-  "baseBranch": "master",
+  "timezone": "Europe/Oslo",
+  "platformAutomerge": true,
   "enabledManagers": ["maven", "npm", "circleci", "dockerfile", "gradle", "gradle-wrapper", "pip", "github-actions", "helm-values"],
   "rangeStrategy": "pin",
   "commitMessageExtra" : "from v{{currentVersion}} to {{#if isMajor}}v{{{newMajor}}}{{else}}{{#if isSingleVersion}}v{{{toVersion}}}{{else}}{{{newValue}}}{{/if}}{{/if}}",
@@ -73,6 +75,16 @@
     {
       "matchPackageNames": ["org.sonatype.plugins:nexus-staging-maven-plugin"],
       "enabled": false
+    },
+    {
+      "description": "Automerge non-major updates once the release-age cooldown has passed",
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
+    {
+      "description": "Major updates always require manual review",
+      "matchUpdateTypes": ["major"],
+      "automerge": false
     },
     {
       "description": "Do not automerge Camel minor releases (not SemVer compliant: breaking changes may occur)",
@@ -120,20 +132,13 @@
       "versioning": "loose"
     },
     {
-      "description": "Require 4-day release age and disable automerge for all packages",
-      "minimumReleaseAge": "4 days",
-      "automerge": false
+      "description": "Require a 4-day release-age cooldown for all packages before updating",
+      "minimumReleaseAge": "4 days"
     },
     {
-      "description": "Exempt Entur-published packages from release age requirement",
+      "description": "Exempt Entur-published packages from the release-age cooldown (automerged immediately via the non-major rule above)",
       "matchPackagePatterns": ["^@entur/", "^org\\.entur", "^org\\.rutebanken"],
       "minimumReleaseAge": "0 days"
-    },
-    {
-      "description": "Allow automerge for non-major Entur package updates",
-      "matchPackagePatterns": ["^@entur/", "^org\\.entur", "^org\\.rutebanken"],
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true
     },
     {
       "description": "google/cloud-sdk does not follow semver, automerge all updates (cooldown still applies)",
