@@ -141,6 +141,11 @@
       "minimumReleaseAge": "0 days"
     },
     {
+      "description": "Pins introduce no new code (they pin a range to an already-resolved version), so no release-age cooldown. Renovate re-creates renovate/stability-days on every rebase, which resets the clock — on active repos pins never cool down and stay stuck pending.",
+      "matchUpdateTypes": ["pin", "pinDigest"],
+      "minimumReleaseAge": "0 days"
+    },
+    {
       "description": "google/cloud-sdk does not follow semver, automerge all updates (cooldown still applies)",
       "matchPackageNames": ["google/cloud-sdk"],
       "automerge": true
